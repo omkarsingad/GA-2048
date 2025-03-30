@@ -24,7 +24,7 @@ jobs:
             sudo cp -r GA-2048/* /usr/share/nginx/html/
             sudo systemctl restart nginx
   failover:
-    runs-on: linuxagent
+    runs-on: self-hosted
     needs: deploy
     if: failure()
     steps:
