@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: failover
         run: |
-          ssh ubuntu@13.201.133.7
+          ssh ubuntu@3.109.203.118
           sudo apt-get update -y
           sudo apt-get install nginx -y
           sudo systemctl start nginx
