@@ -23,3 +23,18 @@ jobs:
             git clone https://github.com/omkarsingad/GA-2048.git
             sudo cp -r GA-2048/* /usr/share/nginx/html/
             sudo systemctl restart nginx
+  failover:
+    runs-on: linuxagent
+    needs: deploy
+    if: failure()
+    steps:
+      - name: failover
+        run: |
+          ssh ubuntu@13.201.133.7
+          sudo apt-get update -y
+          sudo apt-get install nginx -y
+          sudo systemctl start nginx
+          sudo systemctl enable nginx
+          git clone https://github.com/omkarsingad/GA-2048.git
+          sudo cp -r GA-2048/* /usr/share/nginx/html/
+          sudo systemctl restart nginx
