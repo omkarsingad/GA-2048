@@ -16,10 +16,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            sudo apt-get update -y
-            sudo apt-get install nginx -y
-            sudo systemctl start nginx
-            sudo systemctl enable nginx
             git clone https://github.com/omkarsingad/GA-2048.git
             sudo cp -r GA-2048/* /usr/share/nginx/html/
             sudo systemctl restart nginx
@@ -31,10 +27,6 @@ jobs:
       - name: failover
         run: |
           ssh ubuntu@3.109.203.118
-          sudo apt-get update -y
-          sudo apt-get install nginx -y
-          sudo systemctl start nginx
-          sudo systemctl enable nginx
           git clone https://github.com/omkarsingad/GA-2048.git
           sudo cp -r GA-2048/* /usr/share/nginx/html/
           sudo systemctl restart nginx
